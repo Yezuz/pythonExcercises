@@ -1,31 +1,37 @@
+from abc import ABCMeta, abstractmethod
+
+
 class FiguraRegular:
     
-    def __init__(self, lado = 3, base = 1):
+    __metaclass__ = ABCMeta
+    __nombreClase = "FiguraRegular"
+    
+    def __init__(self, area, lado = 3):
         self.lado = lado
-        self.__area = 0
+        self.__area = area 
+        print('Se mando a llamar el metodo __init__ de la clase: ' + self.__nombreClase)
+
+    def get_area(self): return self.__area
+
+    def get_nombre_clase(self): return __nombreClase
+    
+
+    @abstractmethod
+    def calcularArea(self): pass
+
+
+class Triangulo(FiguraRegular):
+
+    def __init__(self, base, altura):
         self.base = base
-        self.verArea()
-        self.__calcularArea()
-
-    def verArea(self):
-        return self.__area
-
-    def calcularArea(self):
-        __area = (base * altura) / 2
-
-    __calcularArea = calcularArea
+        self.altura = altura
+        self.__area = self.calcularArea()
+        super().__init__(self.__area)
+    
+    def calcularArea(self): 
+        return float(self.base * self.altura) / 2
 
 
-class Cuadrado(FiguraRegular):
+t = Triangulo(3, 4)
+print(t.get_area())
 
-    def __init__(self, lado, base):
-        self.lado = lado
-        self.base = base
-
-    def calcularArea(self):
-        __area = (base * base)
-
-
-cuadrado1= Cuadrado(4, 2)
-cuadrado1.calcularArea()
-print(int(cuadrado1.verArea()))

@@ -1,12 +1,11 @@
-import random
+class Girl:
 
+    gender = "female"
 
-def add_numbers(*args):
-    total = 0
-    for value in args:
-        total += value
-        print("current value: ", value)
-    print(total)
+    def __init__(self, name):
+        self.name = name 
 
-x = random.randrange(1, 90)
-print(x)
+r = Girl('jacky')
+
+print(str(r.gender) + ": " + str(r.name))
+print(int("2"))
